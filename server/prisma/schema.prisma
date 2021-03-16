@@ -13,5 +13,37 @@ generator client {
 
 model User {
   id String @id @default(uuid())
-  name String
+  firstName String 
+  lastName String
+  googleId Int @unique
+  email String @unique
 }
+
+model Itinerary {
+  id String @id @default(uuid())
+  title String
+  city City @relation(fields:[cityId], references:[id])
+  cityId String
+}
+
+model City {
+  id String @id @default(uuid())
+  iso2 String
+  iso3 String
+  stateName String
+  stateId String
+  cityId String
+  lat Int
+  lng Int
+  country Country @relation(fields:[countryId],references:[id])
+  countryId String
+  itineraries Itinerary[]
+}
+
+model Country {
+  id String @id @default(uuid())
+  name String
+  cities City[]
+}
+
+
