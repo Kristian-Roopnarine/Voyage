@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model User {
+  id String @id @default(uuid())
+  firstName String 
+  lastName String
+  googleId Int @unique
+  email String @unique
+}
+
+model Itinerary {
+  id String @id @default(uuid())
+  title String
+  city City @relation(fields:[cityId], references:[id])
+  cityId String
+}
+
+model City {
+  id String @id @default(uuid())
+  iso2 String
+  iso3 String
+  stateName String
+  stateId String
+  cityId String
+  lat Int
+  lng Int
+  country Country @relation(fields:[countryId],references:[id])
+  countryId String
+  itineraries Itinerary[]
+}
+
+model Country {
+  id String @id @default(uuid())
+  name String
+  cities City[]
+}
+
+
