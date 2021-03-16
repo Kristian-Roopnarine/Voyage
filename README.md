@@ -1,7 +1,7 @@
-#Voyage..
+# Voyage..
 Link to version 1 of this application : [Version 1](https://github.com/Kristian-Roopnarine/Travel-Hub-Prototype)
 
-#Tech Stack
+# Tech Stack
 
 -   TypeScript
 -   React
@@ -13,14 +13,14 @@ Link to version 1 of this application : [Version 1](https://github.com/Kristian-
 -   PostgreSQL
 -   TailwindCSS
 
-#Design document
+# Design document
 Link to the design document for Voyage : [Design Document](https://docs.google.com/document/d/1zcCRCTTpSGuzRj-g2NfPNcGdoPnrjkqwB52H2GGj-tM/edit?usp=sharing)
 
-#Data Model
+# Data Model
 ![ER diagram](Voyage%20ER%20Diagram.png)
 
-#High Level Architecture
+# High Level Architecture
 ![High Level Architecture](Voyage%20High%20Level%20Architecture.png)
 
-#User story
+# User story
 ![User story](Voyage%20Flow%20chart.png)
