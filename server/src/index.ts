@@ -2,8 +2,11 @@ import "reflect-metadata";
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import { buildSchema } from "type-graphql";
+import { PrismaClient } from "@prisma/client";
 
 import { UserResolver } from "./resolvers/UserResolver";
+
+export const prisma = new PrismaClient();
 
 const main = async () => {
   const PORT = process.env.PORT || 4000;
