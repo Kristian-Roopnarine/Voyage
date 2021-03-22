@@ -22,21 +22,21 @@ model User {
 model Itinerary {
   id String @id @default(uuid())
   title String
-  city City @relation(fields:[cityId], references:[id])
-  cityId String
+  city City @relation(fields:[city_id], references:[id])
+  city_id String
 }
 
 model City {
   id String @id @default(uuid())
   iso2 String
   iso3 String
-  stateName String
-  stateId String
-  cityId String
+  state_name String?
+  state_id String?
+  city_id String
   lat Int
   lng Int
-  country Country @relation(fields:[countryId],references:[id])
-  countryId String
+  country Country @relation(fields:[country_id],references:[id])
+  country_id String
   itineraries Itinerary[]
 }
 
