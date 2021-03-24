@@ -30,11 +30,12 @@ model City {
   id String @id @default(uuid())
   iso2 String
   iso3 String
+  name String
   state_name String?
   state_id String?
-  city_id String
-  lat Int
-  lng Int
+  city_id Int
+  lat Float
+  lng Float
   country Country @relation(fields:[country_id],references:[id])
   country_id String
   itineraries Itinerary[]

@@ -18,6 +18,8 @@ for index,row in country_df.iterrows():
 #create city df
 city_df = pd.read_csv(CITY_FILE_NAME)
 city_df = city_df[OUTPUT_COLUMNS]
+city_df['iso2'].fillna('US',inplace=True)
+city_df['iso3'].fillna('USA',inplace=True)
 
 output_data = []
 for index,row in city_df.iterrows():
@@ -30,30 +32,33 @@ for index,row in city_df.iterrows():
     data['name'] = row['city']
     data['lat'] = row['lat']
     data['lng'] = row['lng']
-    data['country'] = row['country']
-    if row['state_name'] == '':
-        data['state_name'] = NULL
-        data['state_id'] = NULL
-    output_data.append(data)
+    data['country_id'] = row['country']
 
+    if pd.isna(row['state_name']):
+        data['state_name'] = None
+        data['state_id'] = None
+    else:
+        data['state_name'] = row['state_name']
+        data['state_id'] = row['state_id']
+    output_data.append(data)
 interface = """
-    export interface CityData {
-        iso2:string;
-        iso3:string;
-        city:string;
-        lat:number;
-        lng:number;
-        country:string;
-        city_id:number;
-        state_name?:string;
-        state_id?:string;
-    }
+export interface CityData {
+    iso2:string;
+    iso3:string;
+    name:string;
+    lat:number;
+    lng:number;
+    country_id:string;
+    city_id:number;
+    state_name?:string | null;
+    state_id?:string | null;
+}
     """
 
 with open(OUTPUT_FILE,'w') as f:
     json_list =json.dumps(output_data)
     js_contents = f"""
-    {interface}
-    export const cityData:CityData[] = {json_list}"""
+{interface}
+export const cityData:CityData[] = {json_list}"""
     f.write(js_contents)
 
