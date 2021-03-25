@@ -1,4 +1,4 @@
-import { Arg, Field, Mutation, ObjectType, Query, Resolver } from 'type-graphql';
+import { Arg, Field, ObjectType, Query, Resolver } from 'type-graphql';
 import { City } from './../entity/City';
 import { prisma } from './../index';
 
@@ -14,6 +14,7 @@ class FieldError {
 class CityResolverResponse {
 	@Field(() => [FieldError], { nullable: true })
 	errors?: FieldError[];
+
 	@Field(() => [City], { nullable: true })
 	data?: City[];
 }
