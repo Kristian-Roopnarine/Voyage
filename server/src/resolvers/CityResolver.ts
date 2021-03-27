@@ -1,23 +1,11 @@
 import { Arg, Field, ObjectType, Query, Resolver } from 'type-graphql';
+import { ResolverArrayResponse } from '../types/ResolverResponse';
 import { City } from './../entity/City';
 import { prisma } from './../index';
 
 @ObjectType()
-class FieldError {
-	@Field()
-	statusCode!: number;
+class CityResolverResponse extends ResolverArrayResponse(City) {}
 
-	@Field()
-	message!: string;
-}
-@ObjectType()
-class CityResolverResponse {
-	@Field(() => [FieldError], { nullable: true })
-	errors?: FieldError[];
-
-	@Field(() => [City], { nullable: true })
-	data?: City[];
-}
 @Resolver()
 export class CityResolver {
 	@Query(() => CityResolverResponse)
