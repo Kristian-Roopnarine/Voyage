@@ -6,6 +6,7 @@ import { PrismaClient } from '@prisma/client';
 
 import { UserResolver } from './resolvers/UserResolver';
 import { CityResolver } from './resolvers/CityResolver';
+import { ItineraryResolver } from './resolvers/ItineraryResolver';
 
 export const prisma = new PrismaClient();
 
@@ -15,7 +16,7 @@ const main = async () => {
 
 	const apolloServer = new ApolloServer({
 		schema: await buildSchema({
-			resolvers: [UserResolver, CityResolver],
+			resolvers: [UserResolver, CityResolver, ItineraryResolver],
 			validate: false,
 		}),
 	});
