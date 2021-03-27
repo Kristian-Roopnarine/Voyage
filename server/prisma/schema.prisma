@@ -28,12 +28,12 @@ model Itinerary {
 }
 
 model ItineraryMembers {
-  id String @id @default(uuid())
   user User @relation(fields:[user_id],references:[id])
   user_id String 
   itinerary Itinerary @relation(fields:[itinerary_id],references:[id])
   itinerary_id String
   role UserRole
+  @@id([user_id,itinerary_id])
 }
 
 model City {
