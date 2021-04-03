@@ -16,6 +16,7 @@ model User {
   lastName String
   googleId String @unique
   email String @unique
+  itineraries ItineraryMembers[]
 }
 
 model Itinerary {
@@ -23,6 +24,16 @@ model Itinerary {
   title String
   city City @relation(fields:[city_id], references:[id])
   city_id String
+  users ItineraryMembers[]
+}
+
+model ItineraryMembers {
+  user User @relation(fields:[user_id],references:[id])
+  user_id String 
+  itinerary Itinerary @relation(fields:[itinerary_id],references:[id])
+  itinerary_id String
+  role UserRole
+  @@id([user_id,itinerary_id])
 }
 
 model City {
@@ -47,3 +58,8 @@ model Country {
 }
 
 
+enum UserRole {
+  CREATOR
+  MEMBER
+  READ_ONLY
+}
