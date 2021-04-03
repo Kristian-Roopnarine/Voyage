@@ -20,16 +20,16 @@ class ItineraryMembers {
 @ObjectType()
 export class Itinerary {
 	@Field((type) => ID)
-	id!: String;
+	id!: string;
 
 	@Field((type) => String)
-	title!: String;
+	title!: string;
 
 	@Field(() => City)
 	city?: City;
 
 	@Field((type) => String)
-	city_id?: String;
+	city_id!: string;
 
 	@Field(() => [ItineraryMembers])
 	users!: ItineraryMembers[];
