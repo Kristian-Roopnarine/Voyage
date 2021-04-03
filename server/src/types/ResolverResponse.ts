@@ -14,7 +14,7 @@ export class ResolverResponse<T> {
 export function ResolverResponse<T>(TClass: ClassType<T>) {
 	@ObjectType({ isAbstract: true })
 	abstract class ResolverResponseClass {
-		@Field(() => [FieldError], { nullable: true })
+		@Field(() => FieldError, { nullable: true })
 		errors?: FieldError[];
 
 		@Field((type) => TClass, { nullable: true })
